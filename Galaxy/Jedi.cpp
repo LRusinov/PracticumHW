@@ -140,7 +140,7 @@ void Jedi::Write_file(const Planet& P, const Stormtrooper& S, const Jedi& J) {
     myfile << P.get_republic() << std::endl;
     myfile.close();
 
-    myfile.open("Stormtroopers.txt", std::ios::app);
+    myfile.open("Stormtroopers.txt", std::ios::out);
     myfile << S.get_id() << std::endl;
     switch (S.get_rank())
     {
