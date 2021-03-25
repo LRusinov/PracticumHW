@@ -1,4 +1,7 @@
-#include "Planet.hpp"
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include "Planet.h"
 
 char* Planet::get_name()const {
     return name;
@@ -137,4 +140,12 @@ Planet& Planet:: operator=(const Planet& other) {
         }
         myfile.close();
 
+    }
+    void Planet::Write_file(const Planet& P) {
+        std::ofstream myfile;
+        myfile.open("Planets.txt", std::ios::out);
+        myfile << P.get_name() << std::endl;
+        myfile << P.get_planetSystem() << std::endl;
+        myfile << P.get_republic() << std::endl;
+        myfile.close();
     }
