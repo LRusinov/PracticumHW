@@ -1,4 +1,4 @@
-#include "Jedi.hpp"
+#include "Jedi.h"
 char* Jedi::get_name()const {
     return name;
 }
@@ -66,7 +66,8 @@ Jedi::Jedi(const char* _name, const rankOfJedi _rank, const double _midi_chloria
     this->planet = _planet;
 
 }
-Jedi::Jedi(Jedi& other) {
+    Jedi::Jedi(Jedi& other) {
+
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
 
@@ -134,27 +135,6 @@ Jedi& Jedi::operator=(const Jedi& other) {
 }
 void Jedi::Write_file(const Planet& P, const Stormtrooper& S, const Jedi& J) {
     std::ofstream myfile;
-    myfile.open("Planets.txt",std::ios::out);
-    myfile << P.get_name()<<std::endl;
-    myfile << P.get_planetSystem() << std::endl;
-    myfile << P.get_republic() << std::endl;
-    myfile.close();
-
-    myfile.open("Stormtroopers.txt", std::ios::out);
-    myfile << S.get_id() << std::endl;
-    switch (S.get_rank())
-    {
-    case rankOfStormtrooper::Cadet: myfile << "Cadet" << std::endl;   break;
-    case rankOfStormtrooper::Lance_Corporal: myfile << "Lance_Corporal" << std::endl;   break;
-    case rankOfStormtrooper::Corporal: myfile << "Corporal" << std::endl;   break;
-    case rankOfStormtrooper::Sergeant: myfile << "Sergeant" << std::endl;   break;
-    case rankOfStormtrooper::Staff_Sergeant: myfile << "Staff_Sergeant" << std::endl;   break;
-    case rankOfStormtrooper::Master_Sergeant: myfile << "Master_Sergeant" << std::endl;   break;
-    };
-    myfile << S.get_type() << std::endl;
-    myfile << P.get_name()<<std::endl;
-    myfile.close();
-
     myfile.open("Jedis.txt", std::ios::out);
     myfile << J.get_name() << std::endl;
     switch (J.get_rank())
@@ -178,7 +158,6 @@ void Jedi::Write_file(const Planet& P, const Stormtrooper& S, const Jedi& J) {
 }
 void Jedi::Read_file_J(Jedi& jedi_fromfile) {
     unsigned int counter=0;
-    
     std::string text;
     std::ifstream  myfile("Jedis.txt");
     while (getline(myfile, text)&& text!="") {
@@ -201,7 +180,7 @@ double Jedi::char_to_double(const char* str, double midi_chlorian_out) {
     midi_chlorian_out = 0;
     int s = strlen(str);
     bool point = false;
-    char buff;
+    char buff=' ';
     for (unsigned int i = 0; i < strlen(str); i++) {
         if (str[i] == '.') {
             point = true;
@@ -212,7 +191,7 @@ double Jedi::char_to_double(const char* str, double midi_chlorian_out) {
     
     if (point) {
         
-        int temp = s;
+        unsigned int temp = s;
         for (unsigned int i = 0; i < temp; i++) {
             midi_chlorian_out += (double(str[i]) - 48) * pow(10, s);
             s--;
