@@ -40,5 +40,6 @@ public:
         pl.set_typeofplanet(type);
         std::cout << pl;
     }
+    void Write_file(const Planet& P);
     void Read_file_P(Planet& planet_fromfile);
 };
