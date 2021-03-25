@@ -1,4 +1,7 @@
-#include"Stormtrooper.hpp"
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include"Stormtrooper.h"
 
 char* Stormtrooper::get_id()const {
     return id;
@@ -141,3 +144,20 @@ rankOfStormtrooper Stormtrooper::char_to_enum(const char* str, rankOfStormtroope
     if (str == "Master_Sergeant")   rank_out = rankOfStormtrooper::Master_Sergeant;
     return rank_out;
 }
+void Stormtrooper::Write_file(const Stormtrooper& S){
+std::ofstream myfile;
+myfile.open("Stormtroopers.txt", std::ios::out);
+myfile << S.get_id() << std::endl;
+switch (S.get_rank())
+{
+case rankOfStormtrooper::Cadet: myfile << "Cadet" << std::endl;   break;
+case rankOfStormtrooper::Lance_Corporal: myfile << "Lance_Corporal" << std::endl;   break;
+case rankOfStormtrooper::Corporal: myfile << "Corporal" << std::endl;   break;
+case rankOfStormtrooper::Sergeant: myfile << "Sergeant" << std::endl;   break;
+case rankOfStormtrooper::Staff_Sergeant: myfile << "Staff_Sergeant" << std::endl;   break;
+case rankOfStormtrooper::Master_Sergeant: myfile << "Master_Sergeant" << std::endl;   break;
+};
+myfile << S.get_type() << std::endl;
+myfile << S.planet.get_name() << std::endl;
+myfile.close(); 
+    }
