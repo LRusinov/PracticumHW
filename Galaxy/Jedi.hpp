@@ -1,7 +1,7 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-#include"Stormtrooper.hpp"
+#include"Stormtrooper.h"
 enum class rankOfJedi { Youngling, Padawan, Service, Corps, Knight, Consular, Guardian, Sentinel, Master, Council_Member, Grand_Master };
 class Jedi {
 private:
