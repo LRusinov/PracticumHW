@@ -4,7 +4,7 @@
 #include <iostream>
 #include<cstring>
 
-#include"Planet.hpp"
+#include"Planet.h"
 
 enum class rankOfStormtrooper { Cadet, Private, Lance_Corporal, Corporal, Sergeant, Staff_Sergeant, Master_Sergeant };
 class Stormtrooper {
@@ -35,4 +35,5 @@ void print_stormtrooper()const;
 void Read_file_S(Stormtrooper& stormtrooper_fromfile);
 friend std::ostream& operator<<(std::ostream& os, const Stormtrooper& stormtrooper_out);
 rankOfStormtrooper char_to_enum(const char* str, rankOfStormtrooper& rank_out);
+void Write_file(const Stormtrooper& S);
 }; 
