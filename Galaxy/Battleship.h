@@ -138,5 +138,6 @@ public:
         os << battleShip_out.get_spicies() << std::endl;
         os << battleShip_out.get_hyperjump() << std::endl;
         os << battleShip_out.get_pilot() << std::endl;
+        return os;
     }
 };
