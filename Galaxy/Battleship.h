@@ -132,6 +132,11 @@ public:
         myfile.close();
 
     }
-    friend std::ostream& operator<<(std::ostream& os, const BattleShip& battleShip_out);
-    void pilot_validation(const C& _pilot);
+        friend std::ostream& operator<<(std::ostream& os, const BattleShip& battleShip_out) {
+        os << battleShip_out.get_speed() << std::endl;
+        os << battleShip_out.planet.get_cannons() << std::endl;
+        os << battleShip_out.get_spicies() << std::endl;
+        os << battleShip_out.get_hyperjump() << std::endl;
+        os << battleShip_out.get_pilot() << std::endl;
+    }
 };
