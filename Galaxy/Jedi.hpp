@@ -33,7 +33,7 @@ public:
     bool operator!=(const Jedi& other) const;
     Jedi& operator=(const Jedi& other);
     void print_Jedi();
-    void Write_file(const Planet& P, const Stormtrooper& S, const Jedi& J);
+    void Write_file(const Jedi& J);
     void Read_file_J(Jedi& jedi_fromfile);
     friend std::ostream& operator<<(std::ostream& os, const Jedi& jedi_out);
     rankOfJedi char_to_enum(const char* str, rankOfJedi& rank_out);
