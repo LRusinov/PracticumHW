@@ -133,7 +133,7 @@ Jedi& Jedi::operator=(const Jedi& other) {
     }
     return *this;
 }
-void Jedi::Write_file(const Planet& P, const Stormtrooper& S, const Jedi& J) {
+void Jedi:: Write_file(const Jedi& J); {
     std::ofstream myfile;
     myfile.open("Jedis.txt", std::ios::out);
     myfile << J.get_name() << std::endl;
