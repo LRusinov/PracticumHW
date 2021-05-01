@@ -2,7 +2,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 #include "Planet.h"
-
 char* Planet::get_name()const {
     return name;
 }
@@ -21,7 +20,7 @@ void Planet::set_planetSystem(const char* _planetSystem) {
     planetSystem = new char[strlen(_planetSystem) + 1];
     strcpy(planetSystem, _planetSystem);
 }
-char* Planet:: get_republic() const {
+char* Planet::get_republic() const {
     return republic;
 }
 void Planet::set_republic(const char* _republic) {
@@ -33,7 +32,7 @@ void Planet::set_republic(const char* _republic) {
 typeOfPlanet Planet::get_typeofplanet()const {
     return typeofplanet;
 }
- void Planet::set_typeofplanet(const typeOfPlanet _typeofplanet) {
+void Planet::set_typeofplanet(const typeOfPlanet _typeofplanet) {
     typeofplanet = _typeofplanet;
 }
 
@@ -81,7 +80,7 @@ Planet:: ~Planet() {
     republic = nullptr;
 }
 bool Planet:: operator==(const Planet& other) const {
-    return !strcmp(this->name, other.name) && !strcmp(this->planetSystem, other.planetSystem) && !strcmp(this->republic, other.republic) && typeofplanet==other.typeofplanet;
+    return !strcmp(this->name, other.name) && !strcmp(this->planetSystem, other.planetSystem) && !strcmp(this->republic, other.republic) && typeofplanet == other.typeofplanet;
 }
 bool Planet:: operator!=(const Planet& other) const {
     return !(*this == other);
@@ -101,7 +100,7 @@ Planet& Planet:: operator=(const Planet& other) {
     }
     return *this;
 }
-    std::ostream& operator<<(std::ostream& os, const Planet& planet_out) {
+std::ostream& operator<<(std::ostream& os, const Planet& planet_out) {
     os << planet_out.get_name() << std::endl;
     os << planet_out.get_planetSystem() << std::endl;
     os << planet_out.get_republic() << std::endl;
@@ -125,27 +124,27 @@ Planet& Planet:: operator=(const Planet& other) {
     }*/
     return os;
 }
-    void Planet::Read_file_P(Planet& planet_fromfile) {
-        unsigned int counter = 0;
-        std::string text;
-        std::ifstream myfile("Planet.txt");
-        while (getline(myfile, text) && text != "") {
-            char* buff = new char[text.size() + 1];
-            strcpy(buff, text.c_str());
-            switch (counter) {
-            case 0: planet_fromfile.set_name(buff); counter++; break;
-            case 1: planet_fromfile.set_planetSystem(buff); counter++; break;
-            case 2: planet_fromfile.set_republic(buff); counter = 0; break;
-            }
+void Planet::Read_file_P(Planet& planet_fromfile) {
+    unsigned int counter = 0;
+    std::string text;
+    std::ifstream myfile("Planet.txt");
+    while (getline(myfile, text) && text != "") {
+        char* buff = new char[text.size() + 1];
+        strcpy(buff, text.c_str());
+        switch (counter) {
+        case 0: planet_fromfile.set_name(buff); counter++; break;
+        case 1: planet_fromfile.set_planetSystem(buff); counter++; break;
+        case 2: planet_fromfile.set_republic(buff); counter = 0; break;
         }
-        myfile.close();
+    }
+    myfile.close();
 
-    }
-    void Planet::Write_file(const Planet& P) {
-        std::ofstream myfile;
-        myfile.open("Planets.txt", std::ios::out);
-        myfile << P.get_name() << std::endl;
-        myfile << P.get_planetSystem() << std::endl;
-        myfile << P.get_republic() << std::endl;
-        myfile.close();
-    }
+}
+void Planet::Write_file(const Planet& P) {
+    std::ofstream myfile;
+    myfile.open("Planets.txt", std::ios::out);
+    myfile << P.get_name() << std::endl;
+    myfile << P.get_planetSystem() << std::endl;
+    myfile << P.get_republic() << std::endl;
+    myfile.close();
+}
