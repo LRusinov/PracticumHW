@@ -133,7 +133,7 @@ Jedi& Jedi::operator=(const Jedi& other) {
     }
     return *this;
 }
-void Jedi:: Write_file(const Jedi& J); {
+void Jedi::Write_file(const Jedi& J) {
     std::ofstream myfile;
     myfile.open("Jedis.txt", std::ios::out);
     myfile << J.get_name() << std::endl;
@@ -151,7 +151,7 @@ void Jedi:: Write_file(const Jedi& J); {
     case rankOfJedi::Grand_Master: myfile << "Grand_Master" << std::endl;   break;
     };
     myfile << J.get_midi_chlorian() << std::endl;
-    myfile << P.get_name() << std::endl;
+    myfile << J.planet.get_name() << std::endl;
     myfile << J.get_spicies() << std::endl;
     myfile << J.get_militaryRank() << std::endl<<std::endl;
     myfile.close();
@@ -180,7 +180,6 @@ double Jedi::char_to_double(const char* str, double midi_chlorian_out) {
     midi_chlorian_out = 0;
     int s = strlen(str);
     bool point = false;
-    char buff=' ';
     for (unsigned int i = 0; i < strlen(str); i++) {
         if (str[i] == '.') {
             point = true;
