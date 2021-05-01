@@ -2,6 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 #include"Stormtrooper.h"
+
 enum class rankOfJedi { Youngling, Padawan, Service, Corps, Knight, Consular, Guardian, Sentinel, Master, Council_Member, Grand_Master };
 class Jedi {
 private:
@@ -37,5 +38,5 @@ public:
     void Read_file_J(Jedi& jedi_fromfile);
     friend std::ostream& operator<<(std::ostream& os, const Jedi& jedi_out);
     rankOfJedi char_to_enum(const char* str, rankOfJedi& rank_out);
-    double char_to_double(const char* str, double midi_chlorian_out);
+    double char_to_double(const char* str, double midi_chlorian_out=0);
 };
