@@ -4,7 +4,7 @@
 #include <typeinfo>
 #include <iostream>
 #include"Jedi.h"
-enum class Category_ammunition { Heavy, Medium,Light };
+enum class Category_ammunition { Heavy, Medium, Light };
 template<class C>
 class BattleShip {
 private:
@@ -17,7 +17,7 @@ private:
     Category_ammunition ammo;
     unsigned int hull;
 public:
-    
+
     BattleShip() {
         speed = 0.0;
         cannons = 0;
@@ -27,7 +27,7 @@ public:
         ammo = Category_ammunition::Light;
         hull = 100;
     }
-    BattleShip(const double _speed, const unsigned int _cannons, const unsigned int _size, const bool _hyperjump, C _pilot,const unsigned int _amount_of_fuel,const Category_ammunition _ammo,const unsigned int _hull) {
+    BattleShip(const double _speed, const unsigned int _cannons, const unsigned int _size, const bool _hyperjump, C _pilot, const unsigned int _amount_of_fuel, const Category_ammunition _ammo, const unsigned int _hull) {
         this->speed = _speed;
         this->cannons = _cannons;
         this->size = _size;
@@ -63,51 +63,51 @@ public:
     double get_speed()const {
         return speed;
     }
-    
+
     void set_speed(const double _speed) {
         speed = _speed;
     }
-    
+
     unsigned int get_cannons()const {
         return cannons;
     }
-    
+
     void set_cannons(const unsigned int _cannons) {
         cannons = _cannons;
     }
-    
+
     unsigned int get_amount_of_fuel()const {
         return amount_of_fuel;
     }
-    void set_amount_of_fuel(const unsigned int _amount_of_fuel){
+    void set_amount_of_fuel(const unsigned int _amount_of_fuel) {
         amount_of_fuel = _amount_of_fuel;
     }
     bool get_hyperjump()const {
         return hyperjump;
     }
-    
+
     void set_hyperjump(const bool _hyperjump) {
         hyperjump = _hyperjump;
     }
-    
+
     char* get_pilot()const {
         if (typeid(C) == typeid(Jedi)) {
             return pilot.get_name();
         }
 
     }
-    
+
     void set_pilot(const Jedi _pilot) {
         const type_info& t1 = typeid(_pilot);
-        const type_info& t2= typeid(Jedi);
-        if (t1 != t2 ) {
+        const type_info& t2 = typeid(Jedi);
+        if (t1 != t2) {
             std::cout << "Invalid";
         }
         else {
             this->pilot = _pilot;
         }
     }
-    
+
     unsigned int get_size()const {
         return size;
     }
@@ -116,7 +116,7 @@ public:
     }
 
     bool operator==(const BattleShip& other) const {
-        return speed == other.speed && cannons == other.cannons && size == other.size && hyperjump == other.hyperjump && pilot == other.pilot && amount_of_fuel==other.amount_of_fuel && hull==other.hull && ammo==other.ammo ;
+        return speed == other.speed && cannons == other.cannons && size == other.size && hyperjump == other.hyperjump && pilot == other.pilot && amount_of_fuel == other.amount_of_fuel && hull == other.hull && ammo == other.ammo;
     }
     bool operator!=(const BattleShip& other) const {
         return !(*this == other);
@@ -132,6 +132,7 @@ public:
             this->hull = other.hull;
             this->ammo = other.ammo;
         }
+        return *this;
     }
     void print_BattleShip() {
         std::cout << "Speed: " << speed << std::endl;
@@ -150,7 +151,7 @@ public:
         std::cout << "Pilot: " << pilot << std::endl;
 
     }
-    void Write_file( BattleShip& B) {
+    void Write_file(BattleShip& B) {
         std::ofstream myfile;
         myfile.open("Battleship.txt", std::ios::out);
         myfile << B.get_speed() << std::endl;
@@ -163,7 +164,7 @@ public:
         myfile << B.pilot.Read_file_J << std::endl;//??????????
         myfile.close();
     }
- inline   void Read_file_J(BattleShip& battleship_fromfile) {
+    inline   void Read_file_J(BattleShip& battleship_fromfile) {
         unsigned int counter = 0;
         std::string text;
         std::ifstream  myfile("Battleship.txt");
@@ -186,7 +187,7 @@ public:
         myfile.close();
 
     }
-    friend std::ostream& operator<<(std::ostream& os,const  BattleShip& battleShip_out) {
+    friend std::ostream& operator<<(std::ostream& os, const  BattleShip& battleShip_out) {
         os << "Speed: " << battleShip_out.get_speed() << std::endl;
         os << "Cannons: " << battleShip_out.get_cannons() << std::endl;
         os << "Size: " << battleShip_out.get_size() << std::endl;
@@ -209,23 +210,27 @@ public:
         for (unsigned int i = 0; i < size; i++) {
             s--;
             result += (int(str[i]) - 48) * pow(10, s);
-            
+
         }
         return result;
     }
-    Category_ammunition char_to_enum(const char* str, Category_ammunition ammo_out= Category_ammunition::Light) {
+    Category_ammunition char_to_enum(const char* str, Category_ammunition ammo_out = Category_ammunition::Light) {
 
         if (str == "Medium") ammo_out = Category_ammunition::Medium;
         if (str == "Heavy") ammo_out = Category_ammunition::Heavy;
         if (str == "Light") ammo_out = Category_ammunition::Light;
         return ammo_out;
     }
-    std::vector <BattleShip<Jedi>> fuel_refill(const std::vector <BattleShip<Jedi>> battlesips, const size_t index) {
-            if (battlesips[index].get_amount_of_fuel() != 100) {
-                battlesips[index].set_amount_of_fuel(100);
+    std::vector <BattleShip<Jedi>>& fuel_refill(std::vector <BattleShip<Jedi>>& battlesips) {
+        for (size_t i = 0; i < battlesips.size(); i++) {
+            if (battlesips[i].get_amount_of_fuel() != 100) {
+                battlesips[i].set_amount_of_fuel(100);
             }
+        }
+        return battlesips;
+
     }
-    std::vector <BattleShip<Jedi>> ammo_change(const std::vector <BattleShip<Jedi>> battlesips, const size_t index,const Category_ammunition _ammo) {
+    std::vector <BattleShip<Jedi>> ammo_change(const std::vector <BattleShip<Jedi>> battlesips, const size_t index, const Category_ammunition _ammo) {
         if (battlesips[index].get_ammo() == Category_ammunition::Heavy) {
             if (_ammo == Category_ammunition::Medium) {
                 battlesips[index].set_speed(battlesips[index].get_speed() * 2);
@@ -251,13 +256,14 @@ public:
             }
         }
         battlesips[index].set_ammo(_ammo);
+
+        return battlesips;
     }
-    std::vector <BattleShip<Jedi>> remove_broken(const std::vector <BattleShip<Jedi>> battlesips) {
-        for (size_t i= 0; i < battlesips.size(); i++) {
-            if (battlesips[i].get_hull() < 50) {
-                battlesips.clear(battlesips.begin() + i);
+    std::vector <BattleShip<Jedi>>& remove_broken(std::vector <BattleShip<Jedi>>& battleships) {
+    for (size_t i = 0; i < battleships.size(); i++) {
+            if (battleships[i].get_hull() < 50) {
+               battleships.erase(battleships.begin() + i);
             }
         }
-        return battleships;
     }
 };
