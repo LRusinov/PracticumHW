@@ -38,5 +38,5 @@ public:
     void Read_file_J(Jedi& jedi_fromfile);
     friend std::ostream& operator<<(std::ostream& os, const Jedi& jedi_out);
     rankOfJedi char_to_enum(const char* str, rankOfJedi& rank_out);
-    double char_to_double(const char* str, double midi_chlorian_out=0);
-};
+    double char_to_double(const char* str, double midi_chlorian_out = 0);
+}; 
