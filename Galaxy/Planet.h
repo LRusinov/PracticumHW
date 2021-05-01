@@ -5,7 +5,9 @@
 #include<cstring>
 #include<fstream>
 #include<string>
-enum class typeOfPlanet{Chthonian_planet, Carbon_planet, Coreless_planet, Desert, Gas_dwarf, Helium_planet, Ice_giant, Ice_planet, Iron_planet, Lava_planet, Ocean_planet, Protoplanet, Puffy_planet, Silicate_planet, Terrestrial_planet};
+#include "vector"
+#include"MyLinkedList.h"
+enum class typeOfPlanet { Chthonian_planet, Carbon_planet, Coreless_planet, Desert, Gas_dwarf, Helium_planet, Ice_giant, Ice_planet, Iron_planet, Lava_planet, Ocean_planet, Protoplanet, Puffy_planet, Silicate_planet, Terrestrial_planet };
 class Planet {
 private:
     char* name;
